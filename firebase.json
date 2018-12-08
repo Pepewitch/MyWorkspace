@@ -8,6 +8,14 @@
     ],
     "rewrites": [
       {
+        "source": "/api",
+        "function": "witchwork"
+      },
+      {
+        "source": "/api/**",
+        "function": "witchwork"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
