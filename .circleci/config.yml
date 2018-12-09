@@ -6,7 +6,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: "circleci/node:6.10-browsers"
+      - image: "circleci/node:chakracore-10.13-browsers-legacy"
     steps:
       # Steps to be added
       - checkout
