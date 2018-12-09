@@ -1,5 +1,38 @@
-deployment:
-  production:
-    branch: master
-    commands:
-      - ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
+version: 2
+
+# List of jobs
+jobs:
+  # The build job
+  build:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:6.10-browsers
+    steps:
+      # Steps to be added
+      - run:
+        name: Install local dependencies
+        command: npm install
+      -run:
+        name: Build
+        command: npm run build-prod
+
+          
+
+  # The deploy job
+  deploy:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:6.10-browsers
+    steps:
+      # Steps to be added
+      - run:
+      name: Deploy
+      command: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
+        
+workflows:
+  version: 2
+  # The build and deploy workflow
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy
