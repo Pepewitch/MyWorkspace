@@ -6,7 +6,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: circleci/node:6.10-browsers
+      - image: "circleci/node:6.10-browsers"
     steps:
       # Steps to be added
       - run:
@@ -16,13 +16,11 @@ jobs:
         name: Build
         command: npm run build-prod
 
-          
-
   # The deploy job
   deploy:
     working_directory: ~/project
     docker:
-      - image: circleci/node:6.10-browsers
+      - image: "circleci/node:6.10-browsers"
     steps:
       # Steps to be added
       - run:
