@@ -13,8 +13,9 @@ jobs:
     steps:
       # Steps to be added
       - checkout
-      - run: sudo npm install -g npm
+      - run: npm install -g npm
       - run: npm install
+      - run: npm install --force node-sass
       - run: npm rebuild node-sass --force
       - run: npm run build-prod
       - run: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
