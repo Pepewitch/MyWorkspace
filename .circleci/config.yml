@@ -24,8 +24,8 @@ jobs:
     steps:
       # Steps to be added
       - run:
-      name: Deploy
-      command: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
+        name: Deploy
+        command: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
         
 workflows:
   version: 2
