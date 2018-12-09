@@ -9,6 +9,7 @@ jobs:
       - image: "circleci/node:6.10-browsers"
     steps:
       # Steps to be added
+      - checkout
       - run:
         name: Install firebase
         command: npm install -g firebase-tools
@@ -26,6 +27,7 @@ jobs:
       - image: "circleci/node:6.10-browsers"
     steps:
       # Steps to be added
+      - checkout
       - run:
         name: Deploy
         command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive
