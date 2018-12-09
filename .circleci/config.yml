@@ -10,15 +10,9 @@ jobs:
     steps:
       # Steps to be added
       - checkout
-      - run:
-        name: Install local dependencies
-        command: npm install
-      - run:
-        name: Build
-        command: npm run build-prod
-      - run:
-        name: Deploy
-        command: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
+      - run: npm install
+      - run: npm run build-prod
+      - run: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
         
 workflows:
   version: 2
