@@ -13,7 +13,7 @@ jobs:
     steps:
       # Steps to be added
       - checkout
-      - run: npm install -g npm
+      - run: sudo npm install -g npm@latest
       - run: npm install
       - run: npm install --force node-sass
       - run: npm rebuild node-sass --force
