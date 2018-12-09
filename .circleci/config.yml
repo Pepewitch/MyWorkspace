@@ -4,12 +4,16 @@ version: 2
 jobs:
   # The build job
   build:
+    filters:
+      branches:
+        only: master
     working_directory: ~/project
     docker:
       - image: "circleci/node:chakracore-10.13-browsers-legacy"
     steps:
       # Steps to be added
       - checkout
+      - run: sudo npm install -g npm
       - run: npm install
       - run: npm run build-prod
       - run: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
