@@ -19,9 +19,23 @@ jobs:
           paths:
             - node_modules/
       - run: npm run build-prod
+  deploy:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/project
+    steps:
       - run: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
 workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
