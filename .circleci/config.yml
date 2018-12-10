@@ -2,7 +2,22 @@ version: 2
 jobs: 
   build:
     working_directory: ~/project
-
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-modules-{{ checksum "package.json" }}
+      - run: sudo npm install -g npm@latest
+      - run: npm install
+      - save_cache:
+          key: node-modules-{{ checksum "package.json" }}
+          paths:
+            - node_modules/
+      - run: npm run build-prod
+      - run: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
+      
 workflows:
   version: 2
   build_and_deploy:
@@ -11,19 +26,3 @@ workflows:
           filters:
             branches:
               only: master
-          docker:
-            - image: circleci/node:latest
-          steps:
-            - checkout
-            - restore_cache:
-                keys:
-                  - node-modules-{{ checksum "package.json" }}
-            - run: sudo npm install -g npm@latest
-            - run: npm install
-            - save_cache:
-                key: node-modules-{{ checksum "package.json" }}
-                paths:
-                  - node_modules/
-            - run: npm run build-prod
-            - run: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
-            
