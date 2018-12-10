@@ -1,17 +1,10 @@
 version: 2
-
-# List of jobs
 jobs:
-  # The build job
   build:
-    filters:
-      branches:
-        only: master
     working_directory: ~/project
     docker:
-      - image: "circleci/node:latest"
+      - image: circleci/node:latest
     steps:
-      # Steps to be added
       - checkout
       - restore_cache:
           keys:
@@ -23,11 +16,21 @@ jobs:
           paths:
             - node_modules/
       - run: npm run build-prod
+      
+  deploy:
+    steps:
       - run: npm run deploy --token=$FIREBASE_TOKEN --non-interactive
-        
 workflows:
   version: 2
-  # The build and deploy workflow
   build_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
