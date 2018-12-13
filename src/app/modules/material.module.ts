@@ -1,7 +1,34 @@
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatDividerModule,
+  MatIconModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+} from '@angular/material';
 import { NgModule } from '@angular/core';
-
-const modules = [MatButtonModule, MatCheckboxModule];
+import { MatToolbarModule } from '@angular/material/toolbar';
+const modules = [
+  MatButtonModule,
+  MatCheckboxModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatDividerModule,
+  MatIconModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+];
 
 @NgModule({
   imports: modules,

@@ -1,5 +1,4 @@
-// mixin name will be used in main style.scss
-@mixin app-theme($theme) {
+@mixin header-theme($theme) {
   // retrieve variables from theme
   // (all possible variables, use only what you really need)
   $primary: map-get($theme, primary);
@@ -9,4 +8,13 @@
   //   $background: map-get($theme, background);
 
   // all of these variables contain many additional variables
+  .tool-bar {
+    height: 56px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    background-color: mat-color($primary);
+    box-sizing: border-box;
+    padding: 8px;
+  }
 }

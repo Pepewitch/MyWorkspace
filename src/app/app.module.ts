@@ -9,9 +9,10 @@ import { AngularFireModule } from '@angular/fire';
 import { FirebaseModule } from './modules/firebase.module';
 import { HomeComponent } from './view/home/home.component';
 import { ShowcaseComponent } from './view/showcase/showcase.component';
+import { HeaderComponent } from './component/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ShowcaseComponent],
+  declarations: [AppComponent, HomeComponent, ShowcaseComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
