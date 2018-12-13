@@ -1,3 +1,5 @@
 <app-header></app-header>
-<button mat-raised-button color="accent">TEST</button>
+<div *ngFor="let e of [1];true as i" [class]="(i ? 'light':'dark')+'-theme'">
+<button mat-raised-button color="accent" (click)="i = !i">TEST</button>
+</div>
 <router-outlet></router-outlet>
