@@ -1,21 +1,26 @@
 @import '~@angular/material/theming';
-@import 'app/app.component.scss';
-@import 'app/component/header/header.component.scss';
+@import './themes/light-theme.scss';
+@import './themes/dark-theme.scss';
+@import './app/component/header/header.component.scss';
 // always include only once per project
 @include mat-core();
-
-$app-primary: mat-palette($mat-light-blue);
-$app-accent: mat-palette($mat-pink);
-$app-warn: mat-palette($mat-red);
-$material-app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
-@include angular-material-theme($material-app-theme);
-$theme: (
-  'primary': $app-primary,
-  'accent': $app-accent,
-  'warn': $app-warn
+$list: (
+    light: (
+        material: mat-light-theme($light-primary, $light-accent, $light-warn),
+        theme: $light-theme
+    ),
+    dark: (
+        material: mat-dark-theme($dark-primary, $dark-accent, $dark-warn),
+        theme: $dark-theme
+    )
 );
-@include header-theme($theme);
-@include app-theme($theme);
+@each $theme-name , $map in $list {
+    .#{$theme-name}-theme{
+        @include angular-material-theme(map-get($map, material));
+        @include header-theme(map-get($map, theme));
+    }
+}
+
 body {
   margin: 0;
 }
