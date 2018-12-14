@@ -10,11 +10,16 @@
   // all of these variables contain many additional variables
   .tool-bar {
     height: 56px;
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     background-color: mat-color($primary);
     box-sizing: border-box;
-    padding: 8px;
+    padding: 4px;
+    color: white;
+    box-shadow: 0 2px 8px 0px #888888;
+    position: fixed;
+    z-index: 2;
   }
 }
