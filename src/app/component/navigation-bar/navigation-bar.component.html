@@ -1,49 +1,26 @@
 <div class="header-container">
   <app-header class="navigation-header">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon svgIcon="menu"></mat-icon>
-    </button>
-    <span>HelloWorld</span>
+    <div style="padding-right: 8px">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon svgIcon="menu"></mat-icon>
+      </button>
+    </div>
+    <ng-content select="app-navigation-header-content"></ng-content>
   </app-header>
 </div>
 <mat-sidenav-container>
   <mat-sidenav
     #sidenav
-    mode="side"
-    [(opened)]="opened"
-    (opened)="events.push('open!')"
-    (closed)="events.push('close!')"
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile"
     class="sidenav-container"
   >
-  <div class="sidenav-content-container">
-    TESTTTTTT
-  </div>
+    <div class="sidenav-content-container">
+      <ng-content select="app-navigation-sidenav-content"></ng-content>
+    </div>
   </mat-sidenav>
 
   <mat-sidenav-content class="content-container">
-    <p>TTTTTTTTTTTTTTTTTTTTTT</p>
-    <div
-      *ngFor="let e of [1]; true as i"
-      [class]="(i ? 'light' : 'dark') + '-theme'"
-    >
-      <button mat-raised-button color="accent" (click)="i = !i">TEST</button>
-    </div>
-    <h1
-      *ngFor="
-        let i of [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-      "
-    >
-      T
-    </h1>
-    <!--
-      <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
-      <p>
-        <button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button>
-      </p>
-      <p>Events:</p>
-      <div class="example-events">
-        <div *ngFor="let e of events">{{ e }}</div>
-      </div>
-    -->
+    <ng-content select="app-navigation-main-content"></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -13,9 +13,21 @@ import { HeaderComponent } from './component/header/header.component';
 import { NavigationBarComponent } from './component/navigation-bar/navigation-bar.component';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { NavigationMainContentComponent } from './component/navigation-bar/navigation-main-content/navigation-main-content.component';
+import { NavigationHeaderContentComponent } from './component/navigation-bar/navigation-header-content/navigation-header-content.component';
+import { NavigationSidenavContentComponent } from './component/navigation-bar/navigation-sidenav-content/navigation-sidenav-content.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ShowcaseComponent, HeaderComponent, NavigationBarComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ShowcaseComponent,
+    HeaderComponent,
+    NavigationBarComponent,
+    NavigationMainContentComponent,
+    NavigationHeaderContentComponent,
+    NavigationSidenavContentComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -23,11 +35,9 @@ import { HttpClientModule } from '@angular/common/http';
     FirebaseModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
-  providers: [
-    MatIconRegistry
-  ],
+  providers: [MatIconRegistry],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
