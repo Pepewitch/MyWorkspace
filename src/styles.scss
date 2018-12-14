@@ -20,7 +20,6 @@ $list: (
         @include header-theme(map-get($map, theme));
     }
 }
-
 body {
   margin: 0;
 }
