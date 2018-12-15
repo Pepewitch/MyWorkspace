@@ -1,12 +1,24 @@
 <app-navigation-bar>
-    <app-navigation-header-content>
-        <span>HelloWorld</span>
-    </app-navigation-header-content>
-    <app-navigation-sidenav-content>
-        <button mat-button>LINK1</button>
-    </app-navigation-sidenav-content>
-    <app-navigation-main-content>
-        <router-outlet></router-outlet>
-        <h1 *ngFor="let i of [1,1,1,1,1,11,1,1,1,11,1,1,1,1,11,1]">Test scrolling</h1>
-    </app-navigation-main-content>
+  <app-navigation-header-content>
+    <span>HelloWorld</span>
+  </app-navigation-header-content>
+  <app-navigation-sidenav-content>
+    <div class="sidenav-container">
+      <ng-container *ngFor="let item of sidenav_items">
+        <a class="sidenav-item" mat-button [routerLink]="item.link">
+          {{ item.name }}
+        </a>
+      </ng-container>
+    </div>
+  </app-navigation-sidenav-content>
+  <app-navigation-main-content>
+    <router-outlet></router-outlet>
+    <h1
+      *ngFor="
+        let i of [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      "
+    >
+      T
+    </h1>
+  </app-navigation-main-content>
 </app-navigation-bar>

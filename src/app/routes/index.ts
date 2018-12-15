@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../view/home/home.component';
-import { ShowcaseComponent } from '../view/showcase/showcase.component';
+import { HomeComponent } from '../views/home/home.component';
+import { ShowcaseComponent } from '../views/showcase/showcase.component';
 
 export const routes: Routes = [
   {

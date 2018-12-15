@@ -1,0 +1,12 @@
+.sidenav-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding-top: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidenav-item {
+    width: 100%;
+}
