@@ -1,0 +1,23 @@
+@mixin header-component($theme, $options) {
+  $primary: map-get($theme, primary);
+  $headerHeight: map-get(
+    $map: $options,
+    $key: headerHeight,
+  );
+  .header {
+    &-tool-bar {
+      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      background-color: mat-color($primary);
+      box-sizing: border-box;
+      padding: 8px;
+      color: white;
+      box-shadow: 0 2px 8px 0px #888888;
+      position: fixed;
+      z-index: 2;
+      height: $headerHeight;
+    }
+  }
+}

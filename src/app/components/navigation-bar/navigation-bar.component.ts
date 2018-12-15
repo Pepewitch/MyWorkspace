@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
@@ -7,7 +7,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrls: ['./navigation-bar.component.scss'],
 })
 export class NavigationBarComponent implements OnInit {
-  events = [];
+  @Input() header_height: string | number;
   isMobile = false;
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {

@@ -1,0 +1,24 @@
+@mixin navigation-bar-component($theme, $options) {
+  $sidenavWidth: map-get(
+    $map: $options,
+    $key: sidenavWidth,
+  );
+  .navigation-bar {
+    &-header {
+      width: 100%;
+    }
+    &-content-container {
+      margin-top: 56px;
+    }
+    &-sidenav-container {
+      margin-top: 56px;
+      width: $sidenavWidth;
+    }
+    &-sidenav-content-container {
+      position: fixed;
+      width: 100%;
+      max-width: $sidenavWidth;
+      box-sizing: border-box;
+    }
+  }
+}
