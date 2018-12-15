@@ -3,15 +3,23 @@
     $map: $options,
     $key: sidenavWidth,
   );
+  $headerHeight: map-get(
+    $map: $options,
+    $key: headerHeight,
+  );
   .navigation-bar {
     &-header {
-      width: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
     }
     &-content-container {
-      margin-top: 56px;
+      margin-top: $headerHeight;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
     &-sidenav-container {
-      margin-top: 56px;
+      margin-top: $headerHeight;
       width: $sidenavWidth;
     }
     &-sidenav-content-container {

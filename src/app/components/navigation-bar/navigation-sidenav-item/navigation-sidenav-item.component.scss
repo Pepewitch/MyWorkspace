@@ -1,0 +1,14 @@
+@mixin navigation-sidenav-item-component($theme, $options) {
+  $sidenavWidth: map-get(
+    $map: $options,
+    $key: sidenavWidth,
+  );
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  .navigation-sidenav-item {
+    width: $sidenavWidth;
+    &.active {
+      color: mat-color($accent);
+    }
+  }
+}

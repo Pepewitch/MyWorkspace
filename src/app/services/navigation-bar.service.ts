@@ -7,8 +7,14 @@ import { SidenavItem } from '../types/Navigation';
 export class NavigationBarService {
   sidenav_items: SidenavItem[] = [
     {
-      name: 'home',
+      name: 'Home',
       link: '/',
+      pathMatch: true
+    },
+    {
+      name: 'Embedded Lab',
+      link: '/embedded',
+      pathMatch: false
     },
   ];
   constructor() {}

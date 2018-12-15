@@ -1,0 +1,58 @@
+<div class="flex-col-wrap">
+  <div style="padding: 0 8px;"><h1>EMBEDDED LAB</h1></div>
+  <div class="flex-row-nowrap" style="padding: 8px;" [style.justify-content]="isMobile?'center':'flex-start'">
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="open()"
+      style="margin-right:8px;"
+    >
+      Open the door!
+    </button>
+    <button mat-raised-button color="accent" (click)="close()">
+      Close the door!
+    </button>
+  </div>
+  <div class="container">
+    <div
+      class="flex-col-nowrap response-container"
+      [ngClass]="{ 'with-border': !isMobile }"
+    >
+      <ng-container *ngIf="current_item; else: spinner">
+        <table class="response-table">
+          <tr>
+            <td align="right">Status :</td>
+            <td align="left">{{ this.current_item?.status | titlecase }}</td>
+          </tr>
+          <ng-container
+            *ngIf="
+              current_item.status === 'open' && current_item.action === 'wait';
+              else: normalAction
+            "
+          >
+            <tr>
+              <td align="right">The door is opened, Select Action:</td>
+              <td align="left">
+                <button mat-raised-button color="warn" (click)="ring()">
+                  Ring
+                </button>
+                <button mat-raised-button (click)="dismiss()">Dismiss</button>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #normalAction>
+            <tr>
+              <td align="right">Action :</td>
+              <td align="left">{{ current_item?.action | titlecase }}</td>
+            </tr>
+          </ng-template>
+        </table>
+      </ng-container>
+      <ng-template #spinner>
+        <div>
+          <mat-spinner [diameter]="120" [strokeWidth]="8"></mat-spinner>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

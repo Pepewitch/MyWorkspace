@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavigationMainContentComponent } from './components/navigation-bar/navigation-main-content/navigation-main-content.component';
 import { NavigationHeaderContentComponent } from './components/navigation-bar/navigation-header-content/navigation-header-content.component';
 import { NavigationSidenavContentComponent } from './components/navigation-bar/navigation-sidenav-content/navigation-sidenav-content.component';
+import { EmbeddedLabComponent } from './views/embedded-lab/embedded-lab.component';
+import { NavigationSidenavItemComponent } from './components/navigation-bar/navigation-sidenav-item/navigation-sidenav-item.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { NavigationSidenavContentComponent } from './components/navigation-bar/n
     NavigationMainContentComponent,
     NavigationHeaderContentComponent,
     NavigationSidenavContentComponent,
+    EmbeddedLabComponent,
+    NavigationSidenavItemComponent,
   ],
   imports: [
     BrowserModule,

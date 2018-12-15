@@ -1,0 +1,8 @@
+<a 
+  class="navigation-sidenav-item" 
+  mat-button 
+  [routerLink]="item.link" 
+  routerLinkActive="active" 
+  [routerLinkActiveOptions]="{exact:item.pathMatch}">
+  {{ item.name }}
+</a>

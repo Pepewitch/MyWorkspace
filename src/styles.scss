@@ -3,33 +3,47 @@
 @import 'themes/dark-theme.scss';
 @import './app/components/header/header.component.scss';
 @import './app/components/navigation-bar/navigation-bar.component.scss';
+@import './app/components/navigation-bar/navigation-sidenav-item/navigation-sidenav-item.component.scss';
 // always include only once per project
 @include mat-core();
 $sidenavWidth: 240px;
 $headerHeight: 56px;
 $header-component-options: (
-    headerHeight: $headerHeight
+  headerHeight: $headerHeight,
 );
 $navigation-bar-component-options: (
-    sidenavWidth: $sidenavWidth,
-    headerHeight: $headerHeight
+  sidenavWidth: $sidenavWidth,
+  headerHeight: $headerHeight,
+);
+$navigation-sidenav-item-options: (
+  sidenavWidth: $sidenavWidth,
 );
 $list: (
-    light: (
-        material: mat-light-theme($light-primary, $light-accent, $light-warn),
-        theme: $light-theme
-    ),
-    dark: (
-        material: mat-dark-theme($dark-primary, $dark-accent, $dark-warn),
-        theme: $dark-theme
-    )
+  light: (
+    material: mat-light-theme($light-primary, $light-accent, $light-warn),
+    theme: $light-theme,
+  ),
+  dark: (
+    material: mat-dark-theme($dark-primary, $dark-accent, $dark-warn),
+    theme: $dark-theme,
+  ),
 );
-@each $theme-name , $map in $list {
-    .#{$theme-name}-theme{
-        @include angular-material-theme(map-get($map, material));
-        @include header-component(map-get($map, material) , $header-component-options);
-        @include navigation-bar-component(map-get($map, material) , $navigation-bar-component-options);
-    }
+@each $theme-name, $map in $list {
+  .#{$theme-name}-theme {
+    @include angular-material-theme(map-get($map, material));
+    @include header-component(
+      map-get($map, material),
+      $header-component-options
+    );
+    @include navigation-bar-component(
+      map-get($map, material),
+      $navigation-bar-component-options
+    );
+    @include navigation-sidenav-item-component(
+      map-get($map, material),
+      $navigation-sidenav-item-options
+    );
+  }
 }
 body {
   margin: 0;
@@ -40,4 +54,24 @@ body {
 $config: mat-typography-config();
 * {
   font-family: mat-font-family($config);
+}
+
+.flex-col-wrap {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.flex-col-nowrap {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.flex-row-wrap {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flex-row-nowrap {
+    display: flex;
+    flex-flow: row nowrap;
 }
