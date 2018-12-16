@@ -11,6 +11,8 @@ import {
   MatMenuModule,
   MatNativeDateModule,
   MatDatepickerModule,
+  MatInputModule,
+  MatFormFieldModule,
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,6 +30,8 @@ const modules = [
   MatMenuModule,
   MatNativeDateModule,
   MatDatepickerModule,
+  MatInputModule,
+  MatFormFieldModule,
 ];
 
 @NgModule({
