@@ -1,6 +1,16 @@
-<h1>WELCOME TO WITCHWORK!</h1>
-<ng-container *ngFor="let i of [1, 1, 1, 1, 1]">
-  <h2 *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]">
-    Test Scrollbar
-  </h2></ng-container
->
+<div style="padding: 8px">
+  <h1>WELCOME TO WITCHWORK!</h1>
+  <!--
+    <ng-container *ngFor="let i of [1, 1, 1, 1, 1]">
+      <h2 *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]">
+        Test Scrollbar
+      </h2>
+      </ng-container
+    >
+  -->
+  <mat-divider></mat-divider>
+  <h2>Current work :</h2>
+  <a mat-raised-button color="accent" routerLink="/embedded">
+    Go to embedded lab work!
+  </a>
+</div>
