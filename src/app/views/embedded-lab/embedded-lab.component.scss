@@ -6,14 +6,22 @@
 
 .response-container {
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
     margin-top: 8px;
 }
 
 .response-table {
     table-layout: fixed;
-    td {
-        font-size: 24px;
+    th {
+        font-size: 20px;
         font-weight: 600;
+        padding: 8px;
+        text-decoration: underline;
+    }
+    td {
+        font-size: 16px;
+        font-weight: 500;
         padding: 8px;
     }
 }

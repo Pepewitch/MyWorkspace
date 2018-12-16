@@ -1,6 +1,9 @@
-import { Injectable, OnInit } from '@angular/core';
-import { RealtimeDatabaseService } from './firebase/realtime-database.service';
-import { AngularFireObject } from '@angular/fire/database';
+import { Injectable } from '@angular/core';
+import {
+  AngularFireObject,
+  AngularFireDatabase,
+  AngularFireList,
+} from '@angular/fire/database';
 import { EmbeddedLabItem } from '../types/EmbeddedLab';
 import { from } from 'rxjs';
 
@@ -8,23 +11,27 @@ import { from } from 'rxjs';
   providedIn: 'root',
 })
 export class EmbeddedLabService {
-  private item: AngularFireObject<EmbeddedLabItem>;
-  constructor(private realtime: RealtimeDatabaseService) {
-    this.item = this.realtime.getEmbedded();
+  private items_ref: AngularFireObject<EmbeddedLabItem[]>;
+  constructor(private db: AngularFireDatabase) {
+    this.items_ref = this.db.object<EmbeddedLabItem[]>('embedded');
   }
-  getObserver() {
-    return this.item.valueChanges();
+  getItemsObject() {
+    return this.items_ref;
   }
-  set(value: EmbeddedLabItem) {
-    return from(this.item.set(value));
+  getItemObject(doorID: string) {
+    return this.db.object<EmbeddedLabItem>(`embedded/${doorID}`);
   }
-  update(value: Partial<EmbeddedLabItem>) {
-    return from(this.item.update(value));
+  deleteItem(doorID: string) {
+    return from(this.getItemObject(doorID).remove());
   }
-  open() {
-    return this.set({ action: 'wait', status: 'open' });
-  }
-  close() {
-    return this.set({ action: 'dismiss', status: 'close' });
+  addItem(doorID: string, name?: string) {
+    return from(
+      this.getItemObject(doorID).set({
+        doorID,
+        name: name ? name : doorID,
+        status: 'close',
+        action: 'wait',
+      }),
+    );
   }
 }

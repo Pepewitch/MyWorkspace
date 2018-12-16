@@ -3,6 +3,8 @@ import { EmbeddedLabService } from 'src/app/services/embedded-lab.service';
 import { Subscription } from 'rxjs';
 import { EmbeddedLabItem } from 'src/app/types/EmbeddedLab';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material';
+import { AddEmbeddedLabDialogComponent } from './add-embedded-lab-dialog/add-embedded-lab-dialog.component';
 
 @Component({
   selector: 'app-embedded-lab',
@@ -11,12 +13,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class EmbeddedLabComponent implements OnInit, OnDestroy {
   embedded_subscription: Subscription;
-  current_item: EmbeddedLabItem;
-  last_item: EmbeddedLabItem;
+  items: EmbeddedLabItem[];
   isMobile = false;
   constructor(
     public embedded: EmbeddedLabService,
     breakpointObserver: BreakpointObserver,
+    public dialog: MatDialog,
   ) {
     breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
       this.isMobile = result.matches;
@@ -24,25 +26,46 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.embedded_subscription = this.embedded.getObserver().subscribe(item => {
-      console.log(item);
-      this.last_item = this.current_item;
-      this.current_item = item;
-    });
+    this.embedded_subscription = this.embedded
+      .getItemsObject()
+      .valueChanges()
+      .subscribe(event => {
+        const items: EmbeddedLabItem[] = [];
+        for (const key in event) {
+          if (event.hasOwnProperty(key)) {
+            items.push(event[key]);
+          }
+        }
+        this.items = items;
+      });
   }
   ngOnDestroy() {
     this.embedded_subscription.unsubscribe();
   }
-  open() {
-    this.embedded.open().subscribe();
+  delete(doorID: string) {
+    this.embedded.deleteItem(doorID).subscribe();
   }
-  close() {
-    this.embedded.close().subscribe();
+  add(doorID: string, name?: string) {
+    this.embedded.addItem(doorID, name).subscribe();
   }
-  ring() {
-    this.embedded.update({ action: 'ring' }).subscribe();
+  openAddDialog() {
+    const dialogRef = this.dialog.open(AddEmbeddedLabDialogComponent);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data && data.doorID) {
+        this.add(data.doorID, data.name);
+      }
+    });
   }
-  dismiss() {
-    this.embedded.update({ action: 'dismiss' }).subscribe();
-  }
+  // open() {
+  //   this.embedded.open().subscribe();
+  // }
+  // close() {
+  //   this.embedded.close().subscribe();
+  // }
+  // ring() {
+  //   this.embedded.update({ action: 'ring' }).subscribe();
+  // }
+  // dismiss() {
+  //   this.embedded.update({ action: 'dismiss' }).subscribe();
+  // }
 }

@@ -18,6 +18,8 @@ import { NavigationHeaderContentComponent } from './components/navigation-bar/na
 import { NavigationSidenavContentComponent } from './components/navigation-bar/navigation-sidenav-content/navigation-sidenav-content.component';
 import { EmbeddedLabComponent } from './views/embedded-lab/embedded-lab.component';
 import { NavigationSidenavItemComponent } from './components/navigation-bar/navigation-sidenav-item/navigation-sidenav-item.component';
+import { AddEmbeddedLabDialogComponent } from './views/embedded-lab/add-embedded-lab-dialog/add-embedded-lab-dialog.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,10 @@ import { NavigationSidenavItemComponent } from './components/navigation-bar/navi
     NavigationSidenavContentComponent,
     EmbeddedLabComponent,
     NavigationSidenavItemComponent,
+    AddEmbeddedLabDialogComponent,
+  ],
+  entryComponents: [
+    AddEmbeddedLabDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +46,8 @@ import { NavigationSidenavItemComponent } from './components/navigation-bar/navi
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [MatIconRegistry],
   bootstrap: [AppComponent],

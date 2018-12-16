@@ -20,6 +20,10 @@ export class AppComponent implements OnInit {
       'menu',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-menu-24px.svg'),
     );
+    iconRegistry.addSvgIcon(
+      'clear',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-clear-24px.svg'),
+    );
   }
   ngOnInit() {
     this.sidenav_items = this.navigation.getSidenavItems();

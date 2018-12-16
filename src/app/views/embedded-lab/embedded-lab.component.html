@@ -5,52 +5,81 @@
   <div
     class="flex-row-nowrap"
     [style.justify-content]="isMobile ? 'center' : 'flex-start'"
+    style="padding-bottom: 32px;"
   >
+    <button
+      style="margin-right:8px;"
+      mat-raised-button
+      color="primary"
+      (click)="openAddDialog()"
+    >
+      Add new door!
+    </button>
     <button
       mat-raised-button
       color="accent"
       (click)="open()"
       style="margin-right:8px;"
     >
-      Open the door!
+      Open
     </button>
     <button mat-raised-button color="accent" (click)="close()">
-      Close the door!
+      Close
     </button>
   </div>
+  <mat-divider *ngIf="isMobile"></mat-divider>
   <div
     class="flex-col-nowrap response-container"
     [ngClass]="{ 'with-border': !isMobile }"
   >
-    <ng-container *ngIf="current_item; else: spinner">
-      <table class="response-table">
-        <tr>
-          <td align="right">Status :</td>
-          <td align="left">{{ this.current_item?.status | titlecase }}</td>
-        </tr>
-        <ng-container
-          *ngIf="
-            current_item.status === 'open' && current_item.action === 'wait';
-            else: normalAction
-          "
-        >
+    <ng-container *ngIf="items; else: spinner">
+      <ng-container *ngFor="let item of items; index as index; last as isLast">
+        <table class="response-table">
           <tr>
-            <td align="right">The door is opened, Select Action:</td>
-            <td align="left">
-              <button mat-raised-button color="warn" (click)="ring()">
-                Ring
-              </button>
-              <button mat-raised-button (click)="dismiss()">Dismiss</button>
-            </td>
+            <th colspan="2" align="left">
+              <div class="flex-row-nowrap" style="align-items: center;">
+                <span>Door :{{ item.name }}</span>
+                <button
+                  mat-mini-fab
+                  color="warn"
+                  style="transform: scale(0.5);"
+                  (click)="delete(item.doorID)"
+                >
+                  <mat-icon svgIcon="clear"></mat-icon>
+                </button>
+              </div>
+            </th>
           </tr>
-        </ng-container>
-        <ng-template #normalAction>
           <tr>
-            <td align="right">Action :</td>
-            <td align="left">{{ current_item?.action | titlecase }}</td>
+            <td align="right">Status :</td>
+            <td align="left">{{ item.status | titlecase }}</td>
           </tr>
-        </ng-template>
-      </table>
+          <ng-container
+            *ngIf="
+              item.status === 'open' && item.action === 'wait';
+              else: normalAction
+            "
+          >
+            <tr>
+              <td align="right">The door is opened, Select Action:</td>
+              <td align="left">
+                <button mat-raised-button color="warn" (click)="ring()">
+                  Ring
+                </button>
+                <button mat-raised-button (click)="dismiss()">Dismiss</button>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #normalAction>
+            <tr>
+              <td align="right">Action :</td>
+              <td align="left">{{ item?.action | titlecase }}</td>
+            </tr>
+          </ng-template>
+        </table>
+
+        <mat-divider style="align-self: stretch;" *ngIf="!isLast"></mat-divider>
+      </ng-container>
     </ng-container>
     <ng-template #spinner>
       <div>
