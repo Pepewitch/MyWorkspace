@@ -6,6 +6,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material';
 import { AddEmbeddedLabDialogComponent } from './add-embedded-lab-dialog/add-embedded-lab-dialog.component';
 import { DeleteEmbeddedLabDialogComponent } from './delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-embedded-lab',
@@ -20,6 +21,7 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
     public embedded: EmbeddedLabService,
     breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
+    private title: Title
   ) {
     breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
       this.isMobile = result.matches;
@@ -27,6 +29,7 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.title.setTitle('Embedded Lab');
     this.embedded_subscription = this.embedded
       .getItemsObject()
       .valueChanges()
