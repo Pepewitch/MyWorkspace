@@ -23,9 +23,7 @@
     >
       Open
     </button>
-    <button mat-raised-button color="accent" (click)="close()">
-      Close
-    </button>
+    <button mat-raised-button color="accent" (click)="close()">Close</button>
   </div>
   <mat-divider *ngIf="isMobile"></mat-divider>
   <div
@@ -63,10 +61,16 @@
             <tr>
               <td align="right">The door is opened, Select Action:</td>
               <td align="left">
-                <button mat-raised-button color="warn" (click)="ring()">
+                <button
+                  mat-raised-button
+                  color="warn"
+                  (click)="ring(item.doorID)"
+                >
                   Ring
                 </button>
-                <button mat-raised-button (click)="dismiss()">Dismiss</button>
+                <button mat-raised-button (click)="dismiss(item.doorID)">
+                  Dismiss
+                </button>
               </td>
             </tr>
           </ng-container>

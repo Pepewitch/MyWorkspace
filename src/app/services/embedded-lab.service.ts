@@ -34,4 +34,7 @@ export class EmbeddedLabService {
       }),
     );
   }
+  updateItem(doorID: string, value: Partial<EmbeddedLabItem>) {
+    return from(this.getItemObject(doorID).update({ ...value, doorID }));
+  }
 }
