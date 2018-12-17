@@ -20,7 +20,7 @@ export class AddEmbeddedLabDialogComponent implements OnInit {
   }
   ngOnInit() {}
   submit() {
-    if (this.doorID) {
+    if (this.doorID.value) {
       this.dialogRef.close({
         doorID: this.doorID.value,
         name: this.name.value,
