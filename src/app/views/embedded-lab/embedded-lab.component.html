@@ -67,17 +67,21 @@
               <tr>
                 <th colspan="2" align="left">
                   <div class="flex-row-nowrap" style="align-items: center;">
-                    <span>Door :{{ item.name }}</span>
+                    <span>Door : {{ item.name }} </span>
                     <button
                       mat-mini-fab
                       color="warn"
                       style="transform: scale(0.5);"
-                      (click)="delete(item.doorID)"
+                      (click)="openDeleteDialog(item)"
                     >
                       <mat-icon svgIcon="clear"></mat-icon>
                     </button>
                   </div>
                 </th>
+              </tr>
+              <tr>
+                <td align="right">ID :</td>
+                <td align="left">{{ item.doorID }}</td>
               </tr>
               <tr>
                 <td align="right">Status :</td>

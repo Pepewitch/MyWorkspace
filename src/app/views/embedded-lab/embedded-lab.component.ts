@@ -5,6 +5,7 @@ import { EmbeddedLabItem } from 'src/app/types/EmbeddedLab';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material';
 import { AddEmbeddedLabDialogComponent } from './add-embedded-lab-dialog/add-embedded-lab-dialog.component';
+import { DeleteEmbeddedLabDialogComponent } from './delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
 
 @Component({
   selector: 'app-embedded-lab',
@@ -53,6 +54,16 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(data => {
       if (data && data.doorID) {
         this.add(data.doorID, data.name);
+      }
+    });
+  }
+  openDeleteDialog(item: EmbeddedLabItem) {
+    const dialogRef = this.dialog.open(DeleteEmbeddedLabDialogComponent, {
+      data: item,
+    });
+    dialogRef.afterClosed().subscribe(sure => {
+      if (sure) {
+        this.delete(item.doorID);
       }
     });
   }
