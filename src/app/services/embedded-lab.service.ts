@@ -37,4 +37,14 @@ export class EmbeddedLabService {
   updateItem(doorID: string, value: Partial<EmbeddedLabItem>) {
     return from(this.getItemObject(doorID).update({ ...value, doorID }));
   }
+  open(doorID: string) {
+    return from(
+      this.getItemObject(doorID).update({ status: 'open', action: 'wait' }),
+    );
+  }
+  close(doorID: string) {
+    return from(
+      this.getItemObject(doorID).update({ status: 'close', action: 'wait' }),
+    );
+  }
 }

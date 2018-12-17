@@ -56,12 +56,12 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // open() {
-  //   this.embedded.open().subscribe();
-  // }
-  // close() {
-  //   this.embedded.close().subscribe();
-  // }
+  open(doorID: string) {
+    this.embedded.open(doorID).subscribe();
+  }
+  close(doorID: string) {
+    this.embedded.close(doorID).subscribe();
+  }
   ring(doorID: string) {
     this.embedded.updateItem(doorID, { action: 'ring' }).subscribe();
   }

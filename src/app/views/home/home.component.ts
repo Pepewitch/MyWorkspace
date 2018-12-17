@@ -7,43 +7,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private db: AngularFireDatabase) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.db
-      .object('embedded')
-      .valueChanges()
-      .subscribe(e => console.log(e));
-  }
-  test() {
-    this.db.object('embedded').set([
-      {
-        doorID: 1,
-        status: 'close',
-        action: 'wait',
-      },
-      {
-        doorID: 2,
-        status: 'close',
-        action: 'wait',
-      },
-      {
-        doorID: 3,
-        status: 'close',
-        action: 'wait',
-      },
-      {
-        doorID: 4,
-        status: 'close',
-        action: 'wait',
-      },
-    ]);
-  }
-  test2() {
-    this.db.object('embedded/0').set({
-      doorID: 1,
-      status: 'close',
-      action: 'wait',
-    });
-  }
+  ngOnInit() {}
 }
