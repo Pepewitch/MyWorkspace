@@ -24,6 +24,10 @@ export class AppComponent implements OnInit {
       'clear',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-clear-24px.svg'),
     );
+    iconRegistry.addSvgIcon(
+      'info',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-info-24px.svg'),
+    );
   }
   ngOnInit() {
     this.sidenav_items = this.navigation.getSidenavItems();

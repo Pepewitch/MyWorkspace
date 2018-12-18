@@ -4,8 +4,9 @@ import {
   AngularFireDatabase,
   AngularFireList,
 } from '@angular/fire/database';
-import { EmbeddedLabItem } from '../types/EmbeddedLab';
-import { from } from 'rxjs';
+import { EmbeddedLabItem, EmbeddedLabTransaction } from '../types/EmbeddedLab';
+import { from, forkJoin, interval } from 'rxjs';
+import { flatMap, take, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,9 @@ export class EmbeddedLabService {
   private items_ref: AngularFireObject<EmbeddedLabItem[]>;
   constructor(private db: AngularFireDatabase) {
     this.items_ref = this.db.object<EmbeddedLabItem[]>('embedded');
+  }
+  getTransactionList(doorID: string) {
+    return this.db.list<EmbeddedLabTransaction>(`embedded_transactions/${doorID}`);
   }
   getItemsObject() {
     return this.items_ref;
@@ -34,17 +38,31 @@ export class EmbeddedLabService {
       }),
     );
   }
+  addTransaction(doorID: string, transaction: EmbeddedLabTransaction) {
+    return from(this.getTransactionList(doorID).push(transaction));
+  }
   updateItem(doorID: string, value: Partial<EmbeddedLabItem>) {
-    return from(this.getItemObject(doorID).update({ ...value, doorID }));
+    const item = this.getItemObject(doorID);
+    return item.valueChanges().pipe(
+      take(1),
+      flatMap(current => {
+        return forkJoin(
+          item.update({ ...value, doorID }),
+          this.addTransaction(doorID, {
+            doorID,
+            createdAt: new Date().toISOString(),
+            from: 'Web application',
+            ...current,
+            ...value,
+          }),
+        );
+      }),
+    );
   }
   open(doorID: string) {
-    return from(
-      this.getItemObject(doorID).update({ status: 'open', action: 'wait' }),
-    );
+    return this.updateItem(doorID, { status: 'open', action: 'wait' });
   }
   close(doorID: string) {
-    return from(
-      this.getItemObject(doorID).update({ status: 'close', action: 'wait' }),
-    );
+    return this.updateItem(doorID, { status: 'close', action: 'wait' });
   }
 }

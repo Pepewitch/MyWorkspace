@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { AddEmbeddedLabDialogComponent } from './add-embedded-lab-dialog/add-embedded-lab-dialog.component';
 import { DeleteEmbeddedLabDialogComponent } from './delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
 import { Title } from '@angular/platform-browser';
+import { EmbeddedLabTransactionDialogComponent } from './embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
 
 @Component({
   selector: 'app-embedded-lab',
@@ -21,7 +22,7 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
     public embedded: EmbeddedLabService,
     breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
-    private title: Title
+    private title: Title,
   ) {
     breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
       this.isMobile = result.matches;
@@ -68,6 +69,11 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
       if (sure) {
         this.delete(item.doorID);
       }
+    });
+  }
+  openTransactionDialog(item: EmbeddedLabItem) {
+    const dialogRef = this.dialog.open(EmbeddedLabTransactionDialogComponent, {
+      data: item,
     });
   }
   open(doorID: string) {

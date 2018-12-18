@@ -21,6 +21,7 @@ import { NavigationSidenavItemComponent } from './components/navigation-bar/navi
 import { AddEmbeddedLabDialogComponent } from './views/embedded-lab/add-embedded-lab-dialog/add-embedded-lab-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DeleteEmbeddedLabDialogComponent } from './views/embedded-lab/delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
+import { EmbeddedLabTransactionDialogComponent } from './views/embedded-lab/embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +37,12 @@ import { DeleteEmbeddedLabDialogComponent } from './views/embedded-lab/delete-em
     NavigationSidenavItemComponent,
     AddEmbeddedLabDialogComponent,
     DeleteEmbeddedLabDialogComponent,
+    EmbeddedLabTransactionDialogComponent,
   ],
   entryComponents: [
     AddEmbeddedLabDialogComponent,
-    DeleteEmbeddedLabDialogComponent
+    DeleteEmbeddedLabDialogComponent,
+    EmbeddedLabTransactionDialogComponent
   ],
   imports: [
     BrowserModule,
