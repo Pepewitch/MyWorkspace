@@ -4,10 +4,10 @@ import { Subscription } from 'rxjs';
 import { EmbeddedLabItem } from 'src/app/types/EmbeddedLab';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material';
-import { AddEmbeddedLabDialogComponent } from './add-embedded-lab-dialog/add-embedded-lab-dialog.component';
-import { DeleteEmbeddedLabDialogComponent } from './delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
 import { Title } from '@angular/platform-browser';
-import { EmbeddedLabTransactionDialogComponent } from './embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
+import { AddEmbeddedLabDialogComponent } from 'src/app/components/add-embedded-lab-dialog/add-embedded-lab-dialog.component';
+import { DeleteEmbeddedLabDialogComponent } from 'src/app/components/delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
+import { EmbeddedLabTransactionDialogComponent } from 'src/app/components/embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
 
 @Component({
   selector: 'app-embedded-lab',
@@ -47,28 +47,12 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.embedded_subscription.unsubscribe();
   }
-  delete(doorID: string) {
-    this.embedded.deleteItem(doorID).subscribe();
-  }
-  add(doorID: string, name?: string) {
-    this.embedded.addItem(doorID, name).subscribe();
-  }
   openAddDialog() {
     const dialogRef = this.dialog.open(AddEmbeddedLabDialogComponent);
-    dialogRef.afterClosed().subscribe(data => {
-      if (data && data.doorID) {
-        this.add(data.doorID, data.name);
-      }
-    });
   }
   openDeleteDialog(item: EmbeddedLabItem) {
     const dialogRef = this.dialog.open(DeleteEmbeddedLabDialogComponent, {
       data: item,
-    });
-    dialogRef.afterClosed().subscribe(sure => {
-      if (sure) {
-        this.delete(item.doorID);
-      }
     });
   }
   openTransactionDialog(item: EmbeddedLabItem) {

@@ -2,7 +2,11 @@
   <span *ngIf="data.name">Transaction : {{ data.name }}</span>
 </h1>
 <div mat-dialog-content>
-  <table mat-table [dataSource]="transactions">
+  <table
+    mat-table
+    [dataSource]="transactions"
+    *ngIf="transactions; else: spinner"
+  >
     <!-- Position Column -->
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef>Date</th>
@@ -32,6 +36,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <ng-template #spinner>
+    <div class="flex-row-nowrap" style="justify-content:center;">
+      <mat-spinner diameter="128"></mat-spinner>
+    </div>
+  </ng-template>
 </div>
 <div mat-dialog-actions class="bottom-container">
   <button mat-button (click)="submit()" color="primary" cdkFocusInitial>

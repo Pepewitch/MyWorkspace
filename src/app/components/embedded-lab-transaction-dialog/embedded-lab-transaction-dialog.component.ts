@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EmbeddedLabService } from 'src/app/services/embedded-lab.service';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { EmbeddedLabTransaction } from 'src/app/types/EmbeddedLab';
+import { delay, concatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-embedded-lab-transaction-dialog',
@@ -23,6 +24,14 @@ export class EmbeddedLabTransactionDialogComponent
     this.transaction_subscription = this.embedded
       .getTransactionList(this.data.doorID)
       .valueChanges()
+      .pipe(
+        concatMap((value, index) => {
+          if (index === 0) {
+            return of(value).pipe(delay(5000));
+          }
+          return of(value);
+        }),
+      )
       .subscribe(transactions => {
         this.transactions = transactions
           .map(e => {

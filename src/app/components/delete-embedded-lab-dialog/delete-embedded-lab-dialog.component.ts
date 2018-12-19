@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { EmbeddedLabService } from 'src/app/services/embedded-lab.service';
 
 @Component({
   selector: 'app-delete-embedded-lab-dialog',
@@ -10,6 +11,7 @@ export class DeleteEmbeddedLabDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DeleteEmbeddedLabDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
+    private embedded: EmbeddedLabService,
   ) {}
 
   onNoClick(): void {
@@ -17,6 +19,7 @@ export class DeleteEmbeddedLabDialogComponent implements OnInit {
   }
   ngOnInit() {}
   submit() {
-    this.dialogRef.close(true);
+    this.embedded.deleteItem(this.data.doorID).subscribe();
+    this.dialogRef.close();
   }
 }

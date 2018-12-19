@@ -18,10 +18,10 @@ import { NavigationHeaderContentComponent } from './components/navigation-bar/na
 import { NavigationSidenavContentComponent } from './components/navigation-bar/navigation-sidenav-content/navigation-sidenav-content.component';
 import { EmbeddedLabComponent } from './views/embedded-lab/embedded-lab.component';
 import { NavigationSidenavItemComponent } from './components/navigation-bar/navigation-sidenav-item/navigation-sidenav-item.component';
-import { AddEmbeddedLabDialogComponent } from './views/embedded-lab/add-embedded-lab-dialog/add-embedded-lab-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DeleteEmbeddedLabDialogComponent } from './views/embedded-lab/delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
-import { EmbeddedLabTransactionDialogComponent } from './views/embedded-lab/embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
+import { AddEmbeddedLabDialogComponent } from './components/add-embedded-lab-dialog/add-embedded-lab-dialog.component';
+import { DeleteEmbeddedLabDialogComponent } from './components/delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
+import { EmbeddedLabTransactionDialogComponent } from './components/embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
 
 @NgModule({
   declarations: [

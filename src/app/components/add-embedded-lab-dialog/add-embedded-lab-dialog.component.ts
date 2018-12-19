@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { EmbeddedLabService } from 'src/app/services/embedded-lab.service';
 
 @Component({
   selector: 'app-add-embedded-lab-dialog',
@@ -12,6 +13,7 @@ export class AddEmbeddedLabDialogComponent implements OnInit {
   name = new FormControl('');
   constructor(
     public dialogRef: MatDialogRef<AddEmbeddedLabDialogComponent>,
+    private embedded: EmbeddedLabService,
     @Inject(MAT_DIALOG_DATA) public data,
   ) {}
 
@@ -21,6 +23,7 @@ export class AddEmbeddedLabDialogComponent implements OnInit {
   ngOnInit() {}
   submit() {
     if (this.doorID.value) {
+      this.embedded.addItem(this.doorID.value, this.name.value).subscribe();
       this.dialogRef.close({
         doorID: this.doorID.value,
         name: this.name.value,
