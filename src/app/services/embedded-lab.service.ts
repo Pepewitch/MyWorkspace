@@ -4,26 +4,47 @@ import {
   AngularFireDatabase,
   AngularFireList,
 } from '@angular/fire/database';
-import { EmbeddedLabItem, EmbeddedLabTransaction } from '../types/EmbeddedLab';
+import {
+  EmbeddedLabItem,
+  EmbeddedLabTransaction,
+  EmbeddedLabSetting,
+} from '../types/EmbeddedLab';
 import { from, forkJoin, interval } from 'rxjs';
 import { flatMap, take, map } from 'rxjs/operators';
+import { FirestoreService } from './firebase/firestore.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmbeddedLabService {
   private items_ref: AngularFireObject<EmbeddedLabItem[]>;
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private fs: FirestoreService) {
     this.items_ref = this.db.object<EmbeddedLabItem[]>('embedded');
   }
   getTransactionList(doorID: string) {
-    return this.db.list<EmbeddedLabTransaction>(`embedded_transactions/${doorID}`);
+    return this.db.list<EmbeddedLabTransaction>(
+      `embedded_transactions/${doorID}`,
+    );
   }
   getItemsObject() {
     return this.items_ref;
   }
   getItemObject(doorID: string) {
     return this.db.object<EmbeddedLabItem>(`embedded/${doorID}`);
+  }
+  getSetting(doorID: string) {
+    return this.fs.getEmbedded().doc<EmbeddedLabSetting>(doorID);
+  }
+  setDontDisturb(doorID: string, fr: Date, to: Date) {
+    return from(
+      this.getSetting(doorID).update({
+        from: fr.toISOString(),
+        to: to.toISOString(),
+      }),
+    );
+  }
+  setWhitelist(doorID: string, whitelist: boolean) {
+    return from(this.getSetting(doorID).update({ whitelist }));
   }
   deleteItem(doorID: string) {
     return from(this.getItemObject(doorID).remove());

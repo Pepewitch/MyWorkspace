@@ -13,3 +13,9 @@ export interface EmbeddedLabTransaction {
   createdAt: Date | string;
   from: string;
 }
+
+export interface EmbeddedLabSetting {
+  whitelist: boolean;
+  from: Date | string;
+  to: Date | string;
+}
