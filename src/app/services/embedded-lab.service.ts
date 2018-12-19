@@ -30,9 +30,17 @@ export class EmbeddedLabService {
     return this.items_ref;
   }
   getItemObject(doorID: string) {
+    if (doorID.trim().length === 0) {
+      alert('ID should not be neither space nor empty');
+      throw new Error('ID should not be neither space nor empty');
+    }
     return this.db.object<EmbeddedLabItem>(`embedded/${doorID}`);
   }
   getSetting(doorID: string) {
+    if (doorID.trim().length === 0) {
+      alert('ID should not be neither space nor empty');
+      throw new Error('ID should not be neither space nor empty');
+    }
     return this.fs.getEmbedded().doc<EmbeddedLabSetting>(doorID);
   }
   setDontDisturb(doorID: string, fr: Date, to: Date) {
@@ -40,6 +48,14 @@ export class EmbeddedLabService {
       this.getSetting(doorID).update({
         from: fr.toISOString(),
         to: to.toISOString(),
+      }),
+    );
+  }
+  removeDontDisturb(doorID: string) {
+    return from(
+      this.getSetting(doorID).update({
+        from: null,
+        to: null,
       }),
     );
   }

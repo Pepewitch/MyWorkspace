@@ -37,8 +37,15 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
       .valueChanges()
       .subscribe(event => {
         const items: EmbeddedLabItem[] = [];
+        console.log(event);
         for (const key in event) {
           if (event.hasOwnProperty(key)) {
+            this.embedded
+              .getSetting(event[key].doorID)
+              .get()
+              .subscribe(e => {
+                console.log('from get ', e.data());
+              });
             items.push(event[key]);
           }
         }
