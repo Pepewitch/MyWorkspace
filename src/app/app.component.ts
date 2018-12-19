@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
       'info',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-info-24px.svg'),
     );
+    iconRegistry.addSvgIcon(
+      'setting',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-settings-20px.svg'),
+    );
   }
   ngOnInit() {
     this.sidenav_items = this.navigation.getSidenavItems();

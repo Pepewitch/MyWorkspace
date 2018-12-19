@@ -73,6 +73,7 @@
                       color="warn"
                       style="transform: scale(0.5);"
                       (click)="openDeleteDialog(item)"
+                      matTooltip="Remove this door"
                     >
                       <mat-icon svgIcon="clear"></mat-icon>
                     </button>
@@ -81,8 +82,18 @@
                       color="primary"
                       style="transform: scale(0.5);"
                       (click)="openTransactionDialog(item)"
+                      matTooltip="See transactions"
                     >
                       <mat-icon svgIcon="info"></mat-icon>
+                    </button>
+                    <button
+                      mat-mini-fab
+                      color="primary"
+                      style="transform: scale(0.5);"
+                      (click)="openSettingDialog(item)"
+                      matTooltip="Setting"
+                    >
+                      <mat-icon svgIcon="setting"></mat-icon>
                     </button>
                   </div>
                 </th>

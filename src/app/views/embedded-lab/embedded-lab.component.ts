@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { AddEmbeddedLabDialogComponent } from 'src/app/components/add-embedded-lab-dialog/add-embedded-lab-dialog.component';
 import { DeleteEmbeddedLabDialogComponent } from 'src/app/components/delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
 import { EmbeddedLabTransactionDialogComponent } from 'src/app/components/embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
+import { EmbeddedLabSettingDialogComponent } from 'src/app/components/embedded-lab-setting-dialog/embedded-lab-setting-dialog.component';
 
 @Component({
   selector: 'app-embedded-lab',
@@ -57,6 +58,11 @@ export class EmbeddedLabComponent implements OnInit, OnDestroy {
   }
   openTransactionDialog(item: EmbeddedLabItem) {
     const dialogRef = this.dialog.open(EmbeddedLabTransactionDialogComponent, {
+      data: item,
+    });
+  }
+  openSettingDialog(item: EmbeddedLabItem) {
+    const dialogRef = this.dialog.open(EmbeddedLabSettingDialogComponent, {
       data: item,
     });
   }

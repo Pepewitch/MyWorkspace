@@ -22,6 +22,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddEmbeddedLabDialogComponent } from './components/add-embedded-lab-dialog/add-embedded-lab-dialog.component';
 import { DeleteEmbeddedLabDialogComponent } from './components/delete-embedded-lab-dialog/delete-embedded-lab-dialog.component';
 import { EmbeddedLabTransactionDialogComponent } from './components/embedded-lab-transaction-dialog/embedded-lab-transaction-dialog.component';
+import { EmbeddedLabSettingDialogComponent } from './components/embedded-lab-setting-dialog/embedded-lab-setting-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +39,13 @@ import { EmbeddedLabTransactionDialogComponent } from './components/embedded-lab
     AddEmbeddedLabDialogComponent,
     DeleteEmbeddedLabDialogComponent,
     EmbeddedLabTransactionDialogComponent,
+    EmbeddedLabSettingDialogComponent,
   ],
   entryComponents: [
     AddEmbeddedLabDialogComponent,
     DeleteEmbeddedLabDialogComponent,
-    EmbeddedLabTransactionDialogComponent
+    EmbeddedLabTransactionDialogComponent,
+    EmbeddedLabSettingDialogComponent,
   ],
   imports: [
     BrowserModule,

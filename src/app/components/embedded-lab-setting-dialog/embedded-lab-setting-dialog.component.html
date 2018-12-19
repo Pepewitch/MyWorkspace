@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Setting : {{data.name}}</h1>
+<div mat-dialog-content>
+  <!-- <div class="flex-col-nowrap">
+    <p>Are you sure to delete <span style="font-weight:600">{{data.name}}</span> ? </p>
+  </div> -->
+</div>
+<div mat-dialog-actions class="bottom-container">
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="submit()" color="primary" cdkFocusInitial>Ok</button>
+</div>
