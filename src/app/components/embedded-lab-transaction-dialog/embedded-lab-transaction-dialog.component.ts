@@ -27,7 +27,7 @@ export class EmbeddedLabTransactionDialogComponent
       .pipe(
         concatMap((value, index) => {
           if (index === 0) {
-            return of(value).pipe(delay(5000));
+            return of(value).pipe(delay(500));
           }
           return of(value);
         }),
@@ -39,7 +39,7 @@ export class EmbeddedLabTransactionDialogComponent
             return e;
           })
           .sort((a, b) => {
-            return a.createdAt > b.createdAt ? 1 : -1;
+            return a.createdAt > b.createdAt ? -1 : 1;
           });
       });
   }
