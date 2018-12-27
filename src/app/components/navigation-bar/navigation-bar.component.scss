@@ -14,18 +14,13 @@
       align-items: center;
     }
     &-content-container {
-      margin-top: $headerHeight;
+      padding-top: $headerHeight;
       min-height: 100vh;
       box-sizing: border-box;
     }
-    &-sidenav-container {
-      margin-top: $headerHeight;
-      width: $sidenavWidth;
-    }
-    &-sidenav-content-container {
-      position: fixed;
-      width: 100%;
-      max-width: $sidenavWidth;
+    &-sidenav {
+      padding-top: $headerHeight;
+      min-height: 100vh;
       box-sizing: border-box;
     }
   }

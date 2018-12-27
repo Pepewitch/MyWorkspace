@@ -13,9 +13,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { NavigationMainContentComponent } from './components/navigation-bar/navigation-main-content/navigation-main-content.component';
-import { NavigationHeaderContentComponent } from './components/navigation-bar/navigation-header-content/navigation-header-content.component';
-import { NavigationSidenavContentComponent } from './components/navigation-bar/navigation-sidenav-content/navigation-sidenav-content.component';
 import { EmbeddedLabComponent } from './views/embedded-lab/embedded-lab.component';
 import { NavigationSidenavItemComponent } from './components/navigation-bar/navigation-sidenav-item/navigation-sidenav-item.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -31,9 +28,6 @@ import { EmbeddedLabSettingDialogComponent } from './components/embedded-lab-set
     ShowcaseComponent,
     HeaderComponent,
     NavigationBarComponent,
-    NavigationMainContentComponent,
-    NavigationHeaderContentComponent,
-    NavigationSidenavContentComponent,
     EmbeddedLabComponent,
     NavigationSidenavItemComponent,
     AddEmbeddedLabDialogComponent,

@@ -1,15 +1,15 @@
 <app-navigation-bar>
-  <app-navigation-header-content>
+  <ng-template #head>
     <span style="font-weight: 600;">WitchWork</span>
-  </app-navigation-header-content>
-  <app-navigation-sidenav-content>
+  </ng-template>
+  <ng-template #side>
     <div class="sidenav-container">
       <ng-container *ngFor="let item of sidenav_items">
-        <app-navigation-sidenav-item [item]="item"></app-navigation-sidenav-item>
+        <app-navigation-sidenav-item
+          [item]="item"
+        ></app-navigation-sidenav-item>
       </ng-container>
     </div>
-  </app-navigation-sidenav-content>
-  <app-navigation-main-content>
-    <router-outlet></router-outlet>
-  </app-navigation-main-content>
+  </ng-template>
+  <ng-template #main> <router-outlet></router-outlet> </ng-template>
 </app-navigation-bar>

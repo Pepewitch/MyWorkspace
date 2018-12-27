@@ -5,22 +5,20 @@
         <mat-icon svgIcon="menu"></mat-icon>
       </button>
     </div>
-    <ng-content select="app-navigation-header-content"></ng-content>
+    <ng-container *ngTemplateOutlet="head"></ng-container>
   </div>
 </app-header>
 <mat-sidenav-container>
   <mat-sidenav
+    class="navigation-bar-sidenav"
     #sidenav
     [mode]="isMobile ? 'over' : 'side'"
     [opened]="!isMobile"
     >
-    <div class="navigation-bar-sidenav-container"></div>
-    <div class="navigation-bar-sidenav-content-container">
-      <ng-content select="app-navigation-sidenav-content"></ng-content>
-    </div>
+    <ng-container *ngTemplateOutlet="side"></ng-container>
   </mat-sidenav>
 
   <mat-sidenav-content class="navigation-bar-content-container">
-    <ng-content select="app-navigation-main-content"></ng-content>
+    <ng-container *ngTemplateOutlet="main"></ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>

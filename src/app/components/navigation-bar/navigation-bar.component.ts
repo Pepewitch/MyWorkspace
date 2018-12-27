@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
@@ -7,6 +7,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrls: ['./navigation-bar.component.scss'],
 })
 export class NavigationBarComponent implements OnInit {
+  @ContentChild('head') head: TemplateRef<any>;
+  @ContentChild('side') side: TemplateRef<any>;
+  @ContentChild('main') main: TemplateRef<any>;
   @Input() header_height: string | number;
   isMobile = false;
   constructor(breakpointObserver: BreakpointObserver) {
