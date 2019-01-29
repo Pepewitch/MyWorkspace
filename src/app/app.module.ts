@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { FirebaseModule } from './modules/firebase.module';
 import { HomeComponent } from './views/home/home.component';
-import { ShowcaseComponent } from './views/showcase/showcase.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { MatIconRegistry } from '@angular/material';
@@ -25,7 +24,6 @@ import { EmbeddedLabSettingDialogComponent } from './components/embedded-lab-set
   declarations: [
     AppComponent,
     HomeComponent,
-    ShowcaseComponent,
     HeaderComponent,
     NavigationBarComponent,
     EmbeddedLabComponent,
